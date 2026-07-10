@@ -11,13 +11,29 @@ export default class ProductData {
     this.category = category;
     this.path = `../json/${this.category}.json`;
   }
+
   getData() {
     return fetch(this.path)
       .then(convertToJson)
       .then((data) => data);
   }
+
   async findProductById(id) {
     const products = await this.getData();
     return products.find((item) => item.Id === id);
+  }
+
+  async searchProducts(searchTerm) {
+    const products = await this.getData();
+
+    const term = searchTerm.toLowerCase().trim();
+
+    return products.filter((product) => {
+      return (
+        product.Name.toLowerCase().includes(term) ||
+        product.NameWithoutBrand.toLowerCase().includes(term) ||
+        product.Brand.Name.toLowerCase().includes(term)
+      );
+    });
   }
 }
