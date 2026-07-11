@@ -38,3 +38,21 @@ export function renderListWithTemplate(template, parentElement, list, position =
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+// Dynamically calculates total quantities and updates the header badge
+export function updateCartBadge() {
+  const cartItems = getLocalStorage("so-cart") || [];
+  const badge = document.getElementById("cart-badge");
+
+  if (!badge) return;
+
+  // Sum up all item quantities (accounts for multiple quantities of the same item)
+  const totalCount = cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
+
+  if (totalCount > 0) {
+    badge.textContent = totalCount;
+    badge.removeAttribute("hidden");
+  } else {
+    badge.setAttribute("hidden", "true");
+  }
+}

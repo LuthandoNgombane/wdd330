@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, updateCartBadge } from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -21,31 +21,27 @@ export default class ProductDetails {
   }
 
   addProductToCart() {
-    // Get current cart or create an empty one
-    let cartItems = getLocalStorage("so-cart") || [];
+      let cartItems = getLocalStorage("so-cart") || [];
 
-    // Check if this product already exists
-    const existingItem = cartItems.find(
-      (item) => item.Id === this.product.Id
-    );
+      const existingItem = cartItems.find(
+        (item) => item.Id === this.product.Id
+      );
 
-    if (existingItem) {
-      // Increase quantity
-      existingItem.quantity = (existingItem.quantity || 1) + 1;
-    } else {
-      // Add quantity property
-      this.product.quantity = 1;
-      cartItems.push(this.product);
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        this.product.quantity = 1;
+        cartItems.push(this.product);
+      }
+
+      setLocalStorage("so-cart", cartItems);
+
+      // 2. Call the badge utility here to update it live instantly!
+      updateCartBadge();
+
+      alert("Product added to cart!");
     }
-
-    // Save updated cart
-    setLocalStorage("so-cart", cartItems);
-
-    // Optional confirmation
-    alert("Product added to cart!");
-  }
-
-  renderProductDetails() {
+    renderProductDetails() {
     productDetailsTemplate(this.product);
   }
 }
