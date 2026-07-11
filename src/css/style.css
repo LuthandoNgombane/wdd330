@@ -241,6 +241,39 @@ button {
   grid-column: 3;
 }
 
+
+
+/* Ensure the parent link is the anchor point for positioning */
+.cart a {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style and position the superscript badge */
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: #e69138;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 12px;
+  text-align: center;
+}
+
+/* Hide the badge entirely if it's empty */
+.cart-badge[hidden] {
+  display: none;
+}
+
+
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

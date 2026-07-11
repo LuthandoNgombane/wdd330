@@ -1,6 +1,11 @@
 import { getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
+import { updateCartBadge } from "./utils.mjs";
+
+// Run immediately at initialization
+updateCartBadge();
+
 
 const dataSource = new ProductData("tents");
 const productID = getParam("product");
