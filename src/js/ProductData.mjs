@@ -9,7 +9,8 @@ function convertToJson(res) {
 export default class ProductData {
   constructor(category) {
     this.category = category;
-    this.path = `../json/${this.category}.json`;
+    //LN - moved js
+    this.path = `/json/${this.category}.json`;
   }
 
   getData() {
@@ -28,12 +29,10 @@ export default class ProductData {
 
     const term = searchTerm.toLowerCase().trim();
 
-    return products.filter((product) => {
-      return (
-        product.Name.toLowerCase().includes(term) ||
-        product.NameWithoutBrand.toLowerCase().includes(term) ||
-        product.Brand.Name.toLowerCase().includes(term)
-      );
-    });
+    return products.filter((product) =>
+      product.Name.toLowerCase().includes(term) ||
+      product.NameWithoutBrand.toLowerCase().includes(term) ||
+      product.Brand.Name.toLowerCase().includes(term)
+    );
   }
 }
