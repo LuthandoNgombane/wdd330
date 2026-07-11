@@ -25,6 +25,10 @@ export default class ProductList {
 
   async init() {
     this.products = await this.dataSource.getData();
+
+    //LN - Exclude the two products that don't have images
+    this.products = this.products.filter(product => product.Id !== "989CG" && product.Id !== "880RT");
+
     this.renderList(this.products);
   }
 
