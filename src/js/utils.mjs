@@ -39,7 +39,38 @@ export function renderListWithTemplate(template, parentElement, list, position =
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-// Dynamically calculates total quantities and updates the header badge
+//LN : Week 3 - Team Activity Changes
+//LN : This function is used to load a template from a given path and return it as a string.
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+//LN : This function is used to render a template with data and optionally call a callback function with the data.
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if(callback) {
+    callback(data);
+  }
+}
+
+//LN : This function is used to load the header and footer templates and render them.
+export async function loadHeaderFooter () {
+
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+
+  const headerElement = document.querySelector("#header");
+  const footerElement = document.querySelector("#footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}
+
+
+//Week 2 - Individual Assignment - Changes
+//LN : Dynamically calculates total quantities and updates the header badge
 export function updateCartBadge() {
   const cartItems = getLocalStorage("so-cart") || [];
   const badge = document.getElementById("cart-badge");
