@@ -1,6 +1,7 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -75,7 +76,6 @@ p {
   font-size: var(--small-font);
   width: 110px;
   height: 80px;
-
   flex-direction: column;
   align-items: flex-end;
   box-shadow: 1px 1px 4px var(--light-grey);
@@ -94,7 +94,8 @@ p {
   margin-top: -1.7em;
 }
 
-/* utility classes */
+/* Utility Classes */
+
 .highlight {
   color: var(--tertiary-color);
 }
@@ -114,9 +115,8 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 
-/* End utility classes */
+/* Cart */
 
-/* Cart icon styles */
 .cart {
   padding-top: 1em;
   position: relative;
@@ -131,7 +131,7 @@ button {
   fill: gray;
 }
 
-/* End cart icon styles */
+/* Hero */
 
 .mission {
   position: absolute;
@@ -151,6 +151,8 @@ button {
   text-align: center;
 }
 
+/* Products */
+
 .products {
   margin-top: 2rem;
   padding: 1rem;
@@ -159,7 +161,7 @@ button {
 .product-list {
   display: flex;
   flex-flow: row wrap;
-  list-style-type: none;
+  list-style: none;
   justify-content: center;
 }
 
@@ -168,13 +170,17 @@ button {
   color: var(--dark-grey);
 }
 
-/* Styles for product lists */
+/* Product Cards */
+
 .product-card {
   flex: 1 1 45%;
   margin: 0.25em;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+
+  /* NEW */
+  position: relative;
 }
 
 .product-card h2,
@@ -191,7 +197,32 @@ button {
   font-size: 1em;
 }
 
-/* End product list card */
+.product-card__price {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.product-card__retail-price {
+  color: #777;
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #d62828;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* Product Detail */
 
 .product-detail {
   padding: 1em;
@@ -203,12 +234,12 @@ button {
   width: 100%;
 }
 
-/* Start cart list card styles */
+/* Cart Card */
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
 }
 
@@ -241,15 +272,13 @@ button {
   grid-column: 3;
 }
 
+/* Cart Badge */
 
-
-/* Ensure the parent link is the anchor point for positioning */
 .cart a {
   position: relative;
   display: inline-block;
 }
 
-/* Style and position the superscript badge */
 .cart-badge {
   position: absolute;
   top: -5px;
@@ -265,14 +294,11 @@ button {
   text-align: center;
 }
 
-/* Hide the badge entirely if it's empty */
 .cart-badge[hidden] {
   display: none;
 }
 
-
-
-
+/* Responsive */
 
 @media screen and (min-width: 500px) {
   body {
