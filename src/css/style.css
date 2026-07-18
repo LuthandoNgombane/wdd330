@@ -320,3 +320,25 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* ================================================================= */
+/* START OF CODE ADDED BY IZUOGU DAVID ONOCHIE */
+/* ================================================================= */
+.custom-search-container {
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 0 15px;
+  text-align: center;
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #303030;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* ================================================================= */
+/* END OF CODE ADDED BY IZUOGU DAVID ONOCHIE */
+/* ================================================================= */
