@@ -1,4 +1,10 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+// 1. Add these imports
+import { updateCartBadge, loadHeaderFooter } from "./utils.mjs";
+
+// 2. Initialize layout templates immediately
+loadHeaderFooter();
+updateCartBadge();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -73,6 +79,9 @@ function attachQuantityListeners() {
       setLocalStorage("so-cart", cartItems);
 
       renderCartContents();
+
+    // Update badge instantly when quantity changes
+      updateCartBadge();
     });
   });
 }
