@@ -298,6 +298,32 @@ button {
   display: none;
 }
 
+/* Cart Remove Button */
+
+.cart-card {
+  position: relative; 
+}
+
+.cart-card__remove {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--dark-grey);
+  font-size: var(--large-font);
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  -webkit-user-select: none;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.cart-card__remove:hover {
+  color: #d62828; /* Matches the discount badge red accent */
+}
+
+
 /* Responsive */
 
 @media screen and (min-width: 500px) {

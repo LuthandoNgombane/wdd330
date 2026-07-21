@@ -26,11 +26,16 @@ function renderCartContents() {
   productList.innerHTML = htmlItems.join("");
 
   attachQuantityListeners();
+  attachRemoveListeners();
 }
 
 function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
+
+      <!-- Remove Item Button -->
+      <span class="cart-card__remove" data-id="${item.Id}">X</span>
+
       <a href="#" class="cart-card__image">
         <img
           src="${item.Image}"
@@ -82,6 +87,29 @@ function attachQuantityListeners() {
 
     // Update badge instantly when quantity changes
       updateCartBadge();
+    });
+  });
+}
+
+function attachRemoveListeners() {
+  const removeButtons = document.querySelectorAll(".cart-card__remove"); 
+
+  removeButtons.forEach((button) => { 
+    button.addEventListener("click", (event) => { 
+      const idToRemove = event.target.dataset.id; 
+      
+      // Pull current items from local storage
+      let cartItems = getLocalStorage("so-cart") || []; 
+
+      // Filter out the selected item by ID
+      cartItems = cartItems.filter((item) => item.Id !== idToRemove); 
+
+      // Update localStorage with the remaining items
+      setLocalStorage("so-cart", cartItems); 
+
+      // Re-render cart and update badge
+      renderCartContents(); 
+      updateCartBadge(); 
     });
   });
 }
