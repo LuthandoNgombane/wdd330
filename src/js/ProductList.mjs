@@ -24,7 +24,7 @@ function productCardTemplate(product) {
           : ""
       }
 
-      <a href="product_pages/?product=${product.Id}">
+      <a href="/product_pages/?product=${product.Id}">
         <img src="${imagePath}" alt="${product.Name}">
 
         <h2 class="card__brand">${product.Brand.Name}</h2>

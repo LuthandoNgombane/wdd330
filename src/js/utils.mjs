@@ -63,6 +63,8 @@ export async function loadHeaderFooter () {
 
   renderWithTemplate(headerTemplate, qs("#header"));
   renderWithTemplate(footerTemplate, qs("#footer"));
+  // Ensure the badge updates right AFTER the header HTML is injected into the DOM
+  updateCartBadge();
 }
 
 
