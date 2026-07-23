@@ -55,29 +55,21 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
-    this.products = [];
   }
 
   async init() {
-    this.products = await this.dataSource.getData();
-
-    // Exclude products that don't have images
-    this.products = this.products.filter(
-      (product) => product.Id !== "989CG" && product.Id !== "880RT"
-    );
-
-    this.renderList(this.products);
+    const list = await this.dataSource.getData(this.category);
+    this.renderList(list);
+    document.querySelector(".title").textContent = this.category;
   }
 
   renderList(list) {
-    this.listElement.innerHTML = "";
+    // const htmlStrings = list.map(productCardTemplate);
+    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
 
-    renderListWithTemplate(
-      productCardTemplate,
-      this.listElement,
-      list,
-      "beforeend"
-    );
+    // apply use new utility function instead of the commented code above
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
+
   }
 
   search(query) {
