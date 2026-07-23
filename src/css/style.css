@@ -298,6 +298,32 @@ button {
   display: none;
 }
 
+/* Cart Remove Button */
+
+.cart-card {
+  position: relative; 
+}
+
+.cart-card__remove {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--dark-grey);
+  font-size: var(--large-font);
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  -webkit-user-select: none;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.cart-card__remove:hover {
+  color: #d62828; /* Matches the discount badge red accent */
+}
+
+
 /* Responsive */
 
 @media screen and (min-width: 500px) {
@@ -320,6 +346,29 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* ================================================================= */
+/* START OF CODE ADDED BY IZUOGU DAVID ONOCHIE */
+/* ================================================================= */
+.custom-search-container {
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 0 15px;
+  text-align: center;
+}
+
+#search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #303030;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* ================================================================= */
+/* END OF CODE ADDED BY IZUOGU DAVID ONOCHIE */
+/* ================================================================= */
+
 /* ==========================================
    Promotional Alert Banner
 ========================================== */

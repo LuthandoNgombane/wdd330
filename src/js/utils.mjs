@@ -61,11 +61,10 @@ export async function loadHeaderFooter () {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const footerTemplate = await loadTemplate("../partials/footer.html");
 
-  const headerElement = document.querySelector("#header");
-  const footerElement = document.querySelector("#footer");
-
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+  renderWithTemplate(headerTemplate, qs("#header"));
+  renderWithTemplate(footerTemplate, qs("#footer"));
+  // Ensure the badge updates right AFTER the header HTML is injected into the DOM
+  updateCartBadge();
 }
 
 

@@ -1,4 +1,10 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+// 1. Add these imports
+import { updateCartBadge, loadHeaderFooter } from "./utils.mjs";
+
+// 2. Initialize layout templates immediately
+loadHeaderFooter();
+updateCartBadge();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -20,11 +26,16 @@ function renderCartContents() {
   productList.innerHTML = htmlItems.join("");
 
   attachQuantityListeners();
+  attachRemoveListeners();
 }
 
 function cartItemTemplate(item) {
   return `
     <li class="cart-card divider">
+
+      <!-- Remove Item Button -->
+      <span class="cart-card__remove" data-id="${item.Id}">X</span>
+
       <a href="#" class="cart-card__image">
         <img
           src="${item.Image}"
@@ -73,6 +84,32 @@ function attachQuantityListeners() {
       setLocalStorage("so-cart", cartItems);
 
       renderCartContents();
+
+    // Update badge instantly when quantity changes
+      updateCartBadge();
+    });
+  });
+}
+
+function attachRemoveListeners() {
+  const removeButtons = document.querySelectorAll(".cart-card__remove"); 
+
+  removeButtons.forEach((button) => { 
+    button.addEventListener("click", (event) => { 
+      const idToRemove = event.target.dataset.id; 
+      
+      // Pull current items from local storage
+      let cartItems = getLocalStorage("so-cart") || []; 
+
+      // Filter out the selected item by ID
+      cartItems = cartItems.filter((item) => item.Id !== idToRemove); 
+
+      // Update localStorage with the remaining items
+      setLocalStorage("so-cart", cartItems); 
+
+      // Re-render cart and update badge
+      renderCartContents(); 
+      updateCartBadge(); 
     });
   });
 }
