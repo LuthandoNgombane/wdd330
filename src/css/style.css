@@ -368,3 +368,95 @@ footer {
 /* ================================================================= */
 /* END OF CODE ADDED BY IZUOGU DAVID ONOCHIE */
 /* ================================================================= */
+
+/* ==========================================
+   Promotional Alert Banner
+========================================== */
+
+.hidden {
+  display: none;
+}
+
+.promo-alert {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-left: 6px solid var(--primary-color);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.promo-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.promo-text strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.4rem;
+}
+
+.promo-text p {
+  padding: 0;
+  margin: 0;
+  color: var(--dark-grey);
+}
+
+.promo-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.promo-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.promo-btn:hover {
+  background-color: var(--tertiary-color);
+}
+
+#close-alert {
+  background: transparent;
+  border: none;
+  color: var(--dark-grey);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+#close-alert:hover {
+  color: #c1121f;
+}
+
+/* Mobile Layout */
+
+@media (max-width: 768px) {
+  .promo-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .promo-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .promo-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
