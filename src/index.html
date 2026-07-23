@@ -9,22 +9,38 @@
   </head>
 
   <body>
-
-    <header class="divider" id="header">
-      
-    </header>
+    <header class="divider" id="header"></header>
 
     <main class="divider">
+
+      <!-- Promotional Alert -->
+      <section id="promo-alert" class="promo-alert hidden">
+        <div class="promo-content">
+          <div class="promo-text">
+            <strong id="promo-title"></strong>
+            <p id="promo-message"></p>
+          </div>
+
+          <div class="promo-buttons">
+            <a id="promo-link" class="promo-btn" href="#">Shop Now</a>
+            <button id="close-alert" aria-label="Close alert">&times;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hero Section -->
       <div class="hero">
         <img
           src="/images/banner-sm.jpg"
           srcset="images/banner-sm.jpg 500w, images/banner.jpg"
           alt="image of a high mountain lake"
         />
+
         <div class="logo logo--square">
           <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
           <div>Sleep<span class="highlight">Outside</span></div>
         </div>
+
         <div class="mission">
           <p>
             Our mission is to provide you with everything you need to sleep
@@ -48,12 +64,10 @@
         <h2>Top Products</h2>
         <ul class="product-list"></ul>
       </section>
-      
+
     </main>
 
-    <footer id="footer">
-
-    </footer>
+    <footer id="footer"></footer>
 
   </body>
 </html>
