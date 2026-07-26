@@ -1,13 +1,12 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  const imagePath = product.Image;
+  // Fix image path for API data
+  const imagePath = product.Images?.PrimaryMedium || product.Image;
 
-  // Check if the product is discounted
   const isDiscounted =
     Number(product.FinalPrice) < Number(product.SuggestedRetailPrice);
 
-  // Calculate discount percentage
   const discountPercentage = isDiscounted
     ? Math.round(
         ((product.SuggestedRetailPrice - product.FinalPrice) /
@@ -23,28 +22,16 @@ function productCardTemplate(product) {
           ? `<span class="discount-badge">${discountPercentage}% OFF</span>`
           : ""
       }
-
       <a href="/product_pages/?product=${product.Id}">
         <img src="${imagePath}" alt="${product.Name}">
-
         <h2 class="card__brand">${product.Brand.Name}</h2>
-
         <h3 class="card__name">${product.NameWithoutBrand}</h3>
-
         ${
           isDiscounted
-            ? `
-              <p class="product-card__retail-price">
-                $${Number(product.SuggestedRetailPrice).toFixed(2)}
-              </p>
-            `
+            ? `<p class="product-card__retail-price">$${Number(product.SuggestedRetailPrice).toFixed(2)}</p>`
             : ""
         }
-
-        <p class="product-card__price">
-          $${Number(product.FinalPrice).toFixed(2)}
-        </p>
-
+        <p class="product-card__price">$${Number(product.FinalPrice).toFixed(2)}</p>
       </a>
     </li>
   `;
@@ -57,11 +44,21 @@ export default class ProductList {
     this.listElement = listElement;
   }
 
-  async init() {
-    const list = await this.dataSource.getData(this.category);
-    this.renderList(list);
-    document.querySelector(".title").textContent = this.category;
+ async init() {
+  const list = await this.dataSource.getData(this.category);
+  this.renderList(list);
+
+  // Format category string (e.g. "sleeping-bags" -> "Sleeping Bags")
+  const formattedCategory = this.category
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  const titleElement = document.querySelector(".title");
+  if (titleElement) {
+    titleElement.textContent = `Top Products: ${formattedCategory}`;
   }
+}
 
   renderList(list) {
     // const htmlStrings = list.map(productCardTemplate);
