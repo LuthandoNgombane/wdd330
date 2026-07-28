@@ -7,7 +7,8 @@ import { updateCartBadge } from "./utils.mjs";
 updateCartBadge();
 
 
-const dataSource = new ProductData("tents");
+// Remove "tents" argument
+const dataSource = new ProductData();
 const productID = getParam("product");
 
 const product = new ProductDetails(productID, dataSource);
