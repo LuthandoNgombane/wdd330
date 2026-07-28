@@ -460,3 +460,19 @@ footer {
     text-align: center;
   }
 }
+.cart-footer{
+    margin-top:2rem;
+    padding:1rem;
+    border-top:2px solid #ddd;
+    text-align:right;
+}
+
+.cart-footer h3{
+    font-size:1.5rem;
+    color:#333;
+}
+
+#cart-total{
+    color:#0b7a4b;
+    font-weight:bold;
+}
