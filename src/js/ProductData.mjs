@@ -9,10 +9,8 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor(category) {
-    // this.category = category;
-    // //LN - moved js
-    // this.path = `/json/${this.category}.json`;
+  constructor() {
+    // Constructor clean; no category needed here
   }
 
   async getData(category) {
@@ -25,12 +23,12 @@ export default class ProductData {
   async findProductById(id) {
     const response = await fetch(`${baseURL}product/${id}`);
     const data = await convertToJson(response);
-    // console.log(data.Result);
     return data.Result;
   }
 
-  async searchProducts(searchTerm) {
-    const products = await this.getData();
+  // FIX: Added 'category' parameter to prevent fetch(`${baseURL}products/search/undefined`)
+  async searchProducts(searchTerm, category = "tents") {
+    const products = await this.getData(category);
 
     const term = searchTerm.toLowerCase().trim();
 

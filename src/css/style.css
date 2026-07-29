@@ -476,3 +476,46 @@ footer {
     color:#0b7a4b;
     font-weight:bold;
 }
+
+/* Category Grid Styles */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 layout */
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  max-width: 600px; /* Constrains the grid width */
+  margin: 2rem auto; /* Centers the whole section horizontally */
+  justify-items: center;
+}
+
+.category-grid li {
+  width: 100%;
+  text-align: center;
+}
+
+.category-grid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-grid a:hover {
+  transform: translateY(-4px);
+}
+
+/* Constrain huge SVG image dimensions */
+.category-grid img {
+  width: 80px;  /* Adjust icon size as preferred */
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.category-grid h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}

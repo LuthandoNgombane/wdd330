@@ -1,7 +1,7 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  // Fix image path for API data
+  // Safe navigation for API image structures
   const imagePath = product.Images?.PrimaryMedium || product.Image;
 
   const isDiscounted =
@@ -42,38 +42,43 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.products = []; // Store fetched list locally for client-side search filtering
   }
 
- async init() {
-  const list = await this.dataSource.getData(this.category);
-  this.renderList(list);
+  async init() {
+    // Default to 'tents' if no category passed in URL
+    const currentCategory = this.category || "tents";
+    
+    const list = await this.dataSource.getData(currentCategory);
+    this.products = list; // Save for client-side search
+    this.renderList(list);
 
-  // Format category string (e.g. "sleeping-bags" -> "Sleeping Bags")
-  const formattedCategory = this.category
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    // Format category string safely (e.g. "sleeping-bags" -> "Sleeping Bags")
+    const formattedCategory = currentCategory
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
-  const titleElement = document.querySelector(".title");
-  if (titleElement) {
-    titleElement.textContent = `Top Products: ${formattedCategory}`;
+    const titleElement = document.querySelector(".title") || document.querySelector(".products h2");
+    if (titleElement) {
+      titleElement.textContent = `Top Products: ${formattedCategory}`;
+    }
   }
-}
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
-    // apply use new utility function instead of the commented code above
+    // Clear list before rendering (helps when filtering)
+    this.listElement.innerHTML = "";
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
 
   search(query) {
-    const filtered = this.products.filter((product) => {
-      const text =
-        `${product.Brand.Name} ${product.NameWithoutBrand}`.toLowerCase();
+    if (!query) {
+      this.renderList(this.products);
+      return;
+    }
 
+    const filtered = this.products.filter((product) => {
+      const text = `${product.Brand?.Name || ""} ${product.NameWithoutBrand || ""}`.toLowerCase();
       return text.includes(query.toLowerCase());
     });
 
