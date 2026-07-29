@@ -519,3 +519,109 @@ footer {
   font-size: 1.1rem;
   margin: 0;
 }
+
+/* ==========================================================================
+   Checkout Page Styles
+   ========================================================================== */
+
+/* Main Container Layout */
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .checkout-container {
+    max-width: 700px;
+  }
+}
+
+/* Form & Fieldsets */
+#checkout-form fieldset,
+#order-summary {
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #fafafa;
+}
+
+#checkout-form legend,
+#order-summary legend {
+  font-weight: bold;
+  color: #303030;
+  padding: 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Stack Labels and Inputs Vertically */
+#checkout-form label {
+  display: block;
+  margin-top: 0.8rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 600;
+}
+
+#checkout-form input {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Keeps padding inside 100% width */
+}
+
+#checkout-form input:focus {
+  outline: none;
+  border-color: #525b0f;
+  box-shadow: 0 0 4px rgba(82, 91, 15, 0.3);
+}
+
+/* Submit Button */
+#checkoutSubmit {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  margin-top: 1rem;
+  background-color: #525b0f; /* Matches Sleep Outside primary green */
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#checkoutSubmit:hover {
+  background-color: #3e450b;
+}
+
+/* Order Summary */
+#order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+#order-summary h4 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 2px dashed #ccc;
+  font-size: 1.2rem;
+  color: #111;
+}
+
+
+
