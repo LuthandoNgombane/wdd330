@@ -623,5 +623,72 @@ footer {
   color: #111;
 }
 
+/* ==========================================================================
+   Contact Page Styles - Created by Izuogu David Onochie
+   ========================================================================== */
+.contact-main {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.form-field label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  background-color: #525b44;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: #3b4231;
+}
+
+.contact-response {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.contact-response.success {
+  color: #2e7d32;
+}
+
+.contact-response.error {
+  color: #d32f2f;
+}
 
 
