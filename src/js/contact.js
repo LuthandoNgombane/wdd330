@@ -8,43 +8,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#contact-form");
   const responseEl = document.querySelector("#contact-response");
 
-  if (!form) return;
+  console.log("Form element found:", form);
+
+  if (!form) {
+    console.error("ERROR: Form with ID #contact-form was not found in the HTML!");
+    return;
+  }
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Stop page reload
+    console.log("Submit button clicked!");
 
-    const name = document.querySelector("#contact-name").value.trim();
-    const email = document.querySelector("#contact-email").value.trim();
-    const subject = document.querySelector("#contact-subject").value.trim();
-    const message = document.querySelector("#contact-message").value.trim();
+    const name = document.querySelector("#contact-name")?.value.trim();
+    const email = document.querySelector("#contact-email")?.value.trim();
+    const subject = document.querySelector("#contact-subject")?.value.trim();
+    const message = document.querySelector("#contact-message")?.value.trim();
 
-    if (!name || !email || !subject || !message) {
-      showFeedback("Please fill out all fields before submitting.", "error");
-      return;
-    }
+    console.log("Captured Data:", { name, email, subject, message });
 
-    // Structure inquiry object
-    const newInquiry = {
-      id: Date.now(),
-      name,
-      email,
-      subject,
-      message,
-      submittedAt: new Date().toISOString()
-    };
-
-    // Save to LocalStorage without needing a database backend
+    // Save to LocalStorage
+    const newInquiry = { name, email, subject, message, date: new Date().toISOString() };
     const inquiries = JSON.parse(localStorage.getItem("customer_inquiries")) || [];
     inquiries.push(newInquiry);
     localStorage.setItem("customer_inquiries", JSON.stringify(inquiries));
 
-    // Display confirmation and reset form
-    showFeedback("Thank you for your message! Our team will get back to you shortly.", "success");
+    if (responseEl) {
+      responseEl.textContent = "Message received and stored successfully!";
+      responseEl.style.color = "green";
+    }
+
     form.reset();
   });
-
-  function showFeedback(msg, type) {
-    responseEl.textContent = msg;
-    responseEl.className = `contact-response ${type}`;
-  }
 });
